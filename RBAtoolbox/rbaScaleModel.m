@@ -77,12 +77,12 @@ elseif nargin == 7
 end
 
 % Calculate simplified air absorption m [dB/m]
-[mfFull,cFull] = mEvans(TFull,hrFull,PaFull,fFull);
-[mfMod,cMod] = mEvans(TMod,hrMod,PaMod,fMod);
+%[mfFull,cFull] = mEvans(TFull,hrFull,PaFull,fFull);
+%[mfMod,cMod] = mEvans(TMod,hrMod,PaMod,fMod);
 
 % Calculate air absorption m [dB/m] from ISO 9613-1
-%[mfFull,cFull] = EACm(TFull,hrFull,PaFull,fFull);
-%[mfMod,cMod] = EACm(TMod,hrMod,PaMod,fMod);
+[mfFull,cFull] = EACm(TFull,hrFull,PaFull,fFull);
+[mfMod,cMod] = EACm(TMod,hrMod,PaMod,fMod);
 
 % Absorption discrepancy (ie. difference in absorption between reference and model)
 bn = mfMod.*cMod-K*mfFull.*cFull;
