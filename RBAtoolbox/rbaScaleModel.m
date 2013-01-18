@@ -77,12 +77,12 @@ elseif nargin == 7
 end
 
 % Calculate simplified air absorption m [dB/m]
-% mfFull = mEvans(TFull,hrFull,PaFull,fFull);
-% mfMod = mEvans(TMod,hrMod,PaMod,fMod);
+[mfFull,cFull] = mEvans(TFull,hrFull,PaFull,fFull);
+[mfMod,cMod] = mEvans(TMod,hrMod,PaMod,fMod);
 
 % Calculate air absorption m [dB/m] from ISO 9613-1
-[mfFull,cFull] = EACm(TFull,hrFull,PaFull,fFull);
-[mfMod,cMod] = EACm(TMod,hrMod,PaMod,fMod);
+%[mfFull,cFull] = EACm(TFull,hrFull,PaFull,fFull);
+%[mfMod,cMod] = EACm(TMod,hrMod,PaMod,fMod);
 
 % Absorption discrepancy (ie. difference in absorption between reference and model)
 bn = mfMod.*cMod-K*mfFull.*cFull;
@@ -154,7 +154,7 @@ m(i,:) = Alpha./(10.*log10(exp(1)));
 end
 end
 
-function m=mEvans(T,hr,Pa,f)
+function [m,c] = mEvans(T,hr,Pa,f)
 % function that calculates the energy attenuation coefficient m according 
 % Evans & Bazley (1956)
 % T, temperature at measurement, in Celcius
@@ -177,6 +177,7 @@ function m=mEvans(T,hr,Pa,f)
 Pr = 101.325; % reference ambient atmospheric pressure, in kilopascals
 T0 = 293.15; % reference air temperature, in kelvin
 T01 = 273.15; % Triple point isotherm temperature, in kelvin
+c = 343.2*(T01+T)/T0; % Speed of sound in air at T degrees.
 T = T+T01;
 c=343;
 C = -6.8346.*(T01./T).^(1.261)+4.6151; Psat = 10.^(C).*Pr;
