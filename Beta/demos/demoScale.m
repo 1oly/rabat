@@ -39,8 +39,10 @@ title('Full scale impulse response (Dirac)')
 %% RBA
 Hoct1 = rbaIR2OctaveBands(hFull,fsFull,min(fRef),max(fRef),1,0);
 R1 = rbaSchroeder(Hoct1,fsFull);
-[RT1, r2p, dynRange,stdDev1] = rbaReverberationTime(R1,tRef,'best')
+[RT1, r2p, dynRange,stdDev1] = rbaReverberationTime(R1,tRef,'best');
+RT1
 %% Dirac
 Hoct1D = rbaIR2OctaveBands(hCF,fsFull,min(fRef),max(fRef),1,0);
 R1D = rbaSchroeder(Hoct1D,fsFull);
-[RT1D, r2p, dynRange,stdDev1D] = rbaReverberationTime(R1D,tRef,'best')
+[RT1D, r2p, dynRange,stdDev1D] = rbaReverberationTime(R1D,tRef,'best');
+RT1D
